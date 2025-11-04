@@ -1,3 +1,5 @@
+<!-- Chosen Palette: Calm Harmony (Warm Neutral Gray + Cyan Accent) -->
+<!-- Application Structure Plan: The core structure remains a single-page product marketing site (Hero -> Pricing -> Comparison -> Features -> CTA). Aesthetics have been significantly enhanced using larger, softer shadows (3D effect) and transition animations on interactive elements for a premium feel. The features grid (6 items) and the Chart.js visualization are maintained. -->
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -52,6 +54,7 @@
 </head>
 <body class="bg-gray-50 text-gray-800 transition-all duration-300">
 
+    <!-- Header -->
     <nav class="bg-white shadow-lg sticky top-0 z-50">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
             <div class="flex justify-between items-center h-16">
@@ -70,21 +73,26 @@
         </div>
     </nav>
 
+    <!-- Main Content -->
     <div class="container mx-auto p-4 md:p-10 max-w-6xl space-y-16 md:space-y-24">
 
+        <!-- Hero Section -->
         <header class="text-center pt-10">
             <h1 data-key="heroTitle" class="text-4xl md:text-6xl font-extrabold text-gray-900 mb-6"></h1>
             <p data-key="heroSubtitle" class="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed"></p>
         </header>
 
+        <!-- Interactive Pricing Section -->
         <section id="pricing" class="scroll-mt-20">
             <div class="text-center mb-10">
                 <h2 data-key="pricingIntro" class="text-3xl md:text-4xl font-bold mb-6 text-gray-900"></h2>
             </div>
             
+            <!-- Plan Selector Tabs -->
             <div class="flex flex-col sm:flex-row justify-center gap-3 md:gap-6 mb-10">
-                <button data-plan="free" class="plan-btn flex-1 bg-white shadow-xl hover:shadow-2xl text-xl font-semibold py-5 px-8 rounded-xl border-2 border-transparent hover:border-cyan-600">
-                    <span data-key="planFree"></span>
+                <!-- Updated plan name key from 'planFree' to 'planLimited' -->
+                <button data-plan="limited" class="plan-btn flex-1 bg-white shadow-xl hover:shadow-2xl text-xl font-semibold py-5 px-8 rounded-xl border-2 border-transparent hover:border-cyan-600">
+                    <span data-key="planLimited"></span>
                 </button>
                 <button data-plan="premium" class="plan-btn flex-1 bg-white shadow-xl hover:shadow-2xl text-xl font-semibold py-5 px-8 rounded-xl border-2 border-transparent hover:border-cyan-600">
                     <span data-key="planPremium"></span>
@@ -94,16 +102,19 @@
                 </button>
             </div>
 
-            <div id="plan-details-card" class="bg-white p-8 md:p-10 rounded-3xl shadow-3xl max-w-md mx-auto min-h-[240px] transition-all duration-500 transform hover:scale-[1.01] hover:shadow-cyan-400/30 border border-gray-100">
+            <!-- Plan Details Card (Enhanced 3D look) -->
+            <div id="plan-details-card" class="bg-white p-8 md:p-10 rounded-3xl shadow-3xl max-w-md mx-auto min-h-[280px] transition-all duration-500 transform hover:scale-[1.01] hover:shadow-cyan-400/30 border border-gray-100">
                 <h3 id="plan-name" class="text-3xl font-extrabold text-cyan-700 mb-6 text-center border-b pb-3"></h3>
                 <div class="space-y-4 text-xl">
                     <p id="plan-projects" class="flex justify-between items-center text-gray-700"></p>
                     <p id="plan-scripts" class="flex justify-between items-center text-gray-700"></p>
-                    <p id="plan-price" class="flex justify-between items-center text-2xl font-bold pt-4 mt-4 text-cyan-800"></p>
+                    <p id="plan-duration" class="flex justify-between items-center text-gray-700"></p>
+                    <p id="plan-price" class="flex justify-between items-center text-2xl font-bold pt-4 mt-4 text-cyan-800 border-t"></p>
                 </div>
             </div>
         </section>
 
+        <!-- Visualization Section -->
         <section id="comparison">
             <div class="bg-white p-6 md:p-10 rounded-3xl shadow-xl border border-gray-100">
                 <p data-key="chartIntro" class="text-lg text-gray-600 mb-8 text-center max-w-2xl mx-auto"></p>
@@ -113,29 +124,37 @@
             </div>
         </section>
 
+        <!-- Features Section -->
         <section id="features" class="scroll-mt-20">
             <h2 data-key="featuresTitle" class="text-3xl md:text-4xl font-bold text-center mb-10 text-gray-900"></h2>
+            <!-- 3x2 Grid layout for 6 features -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
                 <div class="feature-card bg-white p-8 rounded-2xl shadow-lg text-center transition duration-300">
                     <span data-key="feature1Title" class="text-2xl font-bold text-cyan-800"></span>
                     <p data-key="feature1Desc" class="text-gray-600 mt-3 text-lg"></p>
                 </div>
+                <!-- Feature 2 -->
                 <div class="feature-card bg-white p-8 rounded-2xl shadow-lg text-center transition duration-300">
                     <span data-key="feature2Title" class="text-2xl font-bold text-cyan-800"></span>
                     <p data-key="feature2Desc" class="text-gray-600 mt-3 text-lg"></p>
                 </div>
+                <!-- Feature 3 -->
                 <div class="feature-card bg-white p-8 rounded-2xl shadow-lg text-center transition duration-300">
                     <span data-key="feature3Title" class="text-2xl font-bold text-cyan-800"></span>
                     <p data-key="feature3Desc" class="text-gray-600 mt-3 text-lg"></p>
                 </div>
+                <!-- Feature 4 -->
                 <div class="feature-card bg-white p-8 rounded-2xl shadow-lg text-center transition duration-300">
                     <span data-key="feature4Title" class="text-2xl font-bold text-cyan-800"></span>
                     <p data-key="feature4Desc" class="text-gray-600 mt-3 text-lg"></p>
                 </div>
+                <!-- Feature 5: API/Bots -->
                 <div class="feature-card bg-white p-8 rounded-2xl shadow-lg text-center transition duration-300">
                     <span data-key="feature5Title" class="text-2xl font-bold text-cyan-800"></span>
                     <p data-key="feature5Desc" class="text-gray-600 mt-3 text-lg"></p>
                 </div>
+                <!-- Feature 6: Open UI (New) -->
                 <div class="feature-card bg-white p-8 rounded-2xl shadow-lg text-center transition duration-300">
                     <span data-key="feature6Title" class="text-2xl font-bold text-cyan-800"></span>
                     <p data-key="feature6Desc" class="text-gray-600 mt-3 text-lg"></p>
@@ -143,6 +162,7 @@
             </div>
         </section>
 
+        <!-- CTA Section (Enhanced with Gradient & 3D Hover) -->
         <footer class="text-center py-10">
             <h3 data-key="ctaTitle" class="text-3xl font-bold mb-6 text-gray-900"></h3>
             <a href="https://t.me/zox_z8" target="_blank" class="inline-block mt-6 group">
@@ -163,13 +183,13 @@
                     heroTitle: "🚀 أطلق العنان لمشاريعك مع باقات SERVER XC3!",
                     heroSubtitle: "هل تبحث عن استضافة قوية، سريعة، وموثوقة لمشاريعك؟ سواء كنت مبتدئاً أو محترفاً، \"SERVER XC3\" يقدم لك البنية التحتية المثالية لتحويل أفكارك إلى واقع.",
                     pricingIntro: "اختر الباقة التي تناسب طموحاتك:",
-                    planFree: "🆓 الباقة المجانية",
+                    planLimited: "⏳ الباقة المحدودة", // Updated name
                     planPremium: "⭐ باقة مميز",
                     planVip: "👑 باقة VIP",
                     projects: "المشاريع",
                     scripts: "السكربتات",
+                    duration: "الصلاحية", // New field
                     price: "السعر",
-                    // FIX: Using {{price}} placeholder for accurate price display in AR
                     priceUnit: "{{price}} دولار فقط!", 
                     chartIntro: "مقارنة بصرية لعدد المشاريع المسموح به في كل باقة. توضح الباقات الأعلى القيمة الكبيرة التي تحصل عليها مقابل زيادة طفيفة في السعر.",
                     featuresTitle: "لماذا تختار SERVER XC3؟",
@@ -193,11 +213,12 @@
                     heroTitle: "🚀 Unleash your projects with SERVER XC3 packages!",
                     heroSubtitle: "Are you looking for powerful, fast, and reliable hosting for your projects? Whether you are a beginner or a professional, \"SERVER XC3\" offers you the perfect infrastructure to turn your ideas into reality.",
                     pricingIntro: "Choose the package that suits your ambitions:",
-                    planFree: "🆓 Free Package",
+                    planLimited: "⏳ Limited Package", // Updated name
                     planPremium: "⭐ Premium Package",
                     planVip: "👑 VIP Package",
                     projects: "Projects",
                     scripts: "Scripts",
+                    duration: "Duration", // New field
                     price: "Price",
                     priceUnit: "{{price}} Only $!",
                     chartIntro: "A visual comparison of the number of projects allowed in each package. The higher tiers show the significant value you receive for a minimal price increase.",
@@ -221,26 +242,29 @@
             };
 
             const plansData = {
-                free: { nameKey: "planFree", projects: 2, scripts: 1, price: 1 },
-                premium: { nameKey: "planPremium", projects: 10, scripts: 3, price: 5 },
-                vip: { nameKey: "planVip", projects: 50, scripts: 5, price: 10 }
+                // Key changed from 'free' to 'limited'
+                limited: { nameKey: "planLimited", projects: 2, scripts: 1, duration: 'أسبوع / Week', price: 1 }, 
+                premium: { nameKey: "planPremium", projects: 10, scripts: 3, duration: 'شهر / Month', price: 5 },
+                vip: { nameKey: "planVip", projects: 50, scripts: 5, duration: 'شهر / Month', price: 10 }
             };
 
             // --- 2. STATE VARIABLES (متغيرات الحالة) ---
 
             let currentLang = 'ar';
-            let currentPlan = 'premium';
+            let currentPlan = 'premium'; // Default selection
             let plansChart = null;
 
             // --- 3. DOM REFERENCES (إشارات DOM) ---
 
             const langButtons = document.querySelectorAll('.lang-btn');
-            const planButtons = document.querySelectorAll('.plan-btn');
+            // Select plan buttons using the 'data-plan' attribute (limited, premium, vip)
+            const planButtons = document.querySelectorAll('.plan-btn'); 
             const textElements = document.querySelectorAll('[data-key]');
             
             const planNameEl = document.getElementById('plan-name');
             const planProjectsEl = document.getElementById('plan-projects');
             const planScriptsEl = document.getElementById('plan-scripts');
+            const planDurationEl = document.getElementById('plan-duration'); // New element reference
             const planPriceEl = document.getElementById('plan-price');
             const chartCanvas = document.getElementById('plansChart');
 
@@ -294,7 +318,16 @@
                     <span class="font-bold text-gray-900">${planData.scripts}</span>
                 `;
                 
-                // FIX: Use {{price}} placeholder to ensure the actual numerical price is shown
+                // New field: Duration
+                // Split duration string to show only the relevant part based on language
+                const durationText = planData.duration.split('/')[currentLang === 'ar' ? 0 : 1].trim(); 
+                
+                planDurationEl.innerHTML = `
+                    <span>${trans.duration}:</span>
+                    <span class="font-bold text-gray-900">${durationText}</span>
+                `;
+
+                // Price
                 const priceText = trans.priceUnit.replace('{{price}}', planData.price); 
                 
                 planPriceEl.innerHTML = `
@@ -307,9 +340,10 @@
                 const trans = translations[currentLang];
                 const ctx = chartCanvas.getContext('2d');
                 
+                // Use 'limited' key for chart labels and data
                 const data = {
                     labels: [
-                        trans[plansData.free.nameKey], 
+                        trans[plansData.limited.nameKey], 
                         trans[plansData.premium.nameKey], 
                         trans[plansData.vip.nameKey]
                     ],
@@ -317,7 +351,7 @@
                         {
                             label: trans.projects,
                             data: [
-                                plansData.free.projects, 
+                                plansData.limited.projects, 
                                 plansData.premium.projects, 
                                 plansData.vip.projects
                             ],
@@ -377,7 +411,7 @@
                 const trans = translations[currentLang];
 
                 plansChart.data.labels = [
-                    trans[plansData.free.nameKey], 
+                    trans[plansData.limited.nameKey], 
                     trans[plansData.premium.nameKey], 
                     trans[plansData.vip.nameKey]
                 ];

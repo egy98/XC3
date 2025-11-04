@@ -1,11 +1,3 @@
-<!-- Chosen Palette: Calm Harmony (Warm Neutral Gray + Cyan Accent) -->
-<!-- Application Structure Plan: The core structure remains a single-page product marketing site (Hero -> Pricing -> Comparison -> Features -> CTA). The information architecture now includes a 6th feature focused on UI/UX capabilities. The features grid is optimized for 6 items (3x2 layout on desktop) for perfect symmetry and improved readability, ensuring all features are highlighted equally. The main interaction (Language/Plan Selection) and visualization (Chart.js) are maintained. The CTA is enhanced with a direct Telegram link and a visual icon for better conversion. -->
-<!-- Visualization & Content Choices: 
-1. Report Info: Bilingual (AR/EN) text. Goal: Usability/Accessibility. Viz/Method: HTML text elements. Interaction: Language toggle buttons (AR/EN). JS updates all text content based on a "translations" object. 
-2. Report Info: Three pricing tiers. Goal: Compare/Inform. Viz/Method: (A) HTML Tabs + Dynamic Text Card. (B) Chart.js Bar Chart (Projects comparison). Interaction: Plan selection updates card and chart content. 
-3. Report Info: Key Features (now 6 items, including API/Bots and Open UI). Goal: Inform/Persuade. Viz/Method: HTML/Tailwind 3x2 Grid with Unicode icons. Interaction: None. Justification: A structured, symmetric grid is the clearest way to present these numerous benefits.
--->
-<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -14,11 +6,15 @@
     <title>باقات SERVER XC3</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Tajawal', sans-serif;
             scroll-behavior: smooth;
+        }
+        /* Custom Shadow for 3D/Depth Effect */
+        .shadow-3xl {
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15), 0 5px 15px rgba(0, 0, 0, 0.1);
         }
         .chart-container {
             position: relative;
@@ -30,35 +26,43 @@
             max-height: 400px;
         }
         .plan-btn {
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
         }
+        /* Enhanced 3D effect on active button */
         .plan-btn.active {
             background-color: #0891b2;
             color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(8, 145, 178, 0.3);
+            transform: translateY(-4px); /* Increased lift */
+            box-shadow: 0 10px 25px rgba(8, 145, 178, 0.5); /* Stronger shadow */
         }
         .lang-btn.active {
             background-color: #f1f5f9;
             color: #0e7490;
             font-weight: 700;
         }
+        /* Hover effect for depth on feature cards */
+        .feature-card {
+            transition: all 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(8, 145, 178, 0.2);
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 transition-all duration-300">
 
-    <!-- Header -->
-    <nav class="bg-white shadow-sm sticky top-0 z-50">
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
             <div class="flex justify-between items-center h-16">
                 <div class="flex-shrink-0 flex items-center">
-                    <h1 class="text-xl font-bold text-cyan-700">SERVER XC3</h1>
+                    <h1 class="text-2xl font-extrabold text-cyan-700">SERVER XC3</h1>
                 </div>
-                <div class="flex items-center space-x-1 rtl:space-x-reverse">
-                    <button data-lang="ar" class="lang-btn active text-sm font-medium text-gray-600 hover:text-cyan-700 px-3 py-1.5 rounded-md">
+                <div class="flex items-center space-x-2 rtl:space-x-reverse">
+                    <button data-lang="ar" class="lang-btn active text-base font-medium text-gray-600 hover:text-cyan-700 px-4 py-1.5 rounded-lg transition duration-200">
                         عربي (AR)
                     </button>
-                    <button data-lang="en" class="lang-btn text-sm font-medium text-gray-600 hover:text-cyan-700 px-3 py-1.5 rounded-md">
+                    <button data-lang="en" class="lang-btn text-base font-medium text-gray-600 hover:text-cyan-700 px-4 py-1.5 rounded-lg transition duration-200">
                         English (EN)
                     </button>
                 </div>
@@ -66,103 +70,84 @@
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <div class="container mx-auto p-4 md:p-8 max-w-5xl space-y-12 md:space-y-16">
+    <div class="container mx-auto p-4 md:p-10 max-w-6xl space-y-16 md:space-y-24">
 
-        <!-- Hero Section -->
-        <header class="text-center pt-8">
-            <h1 data-key="heroTitle" class="text-3xl md:text-5xl font-bold text-gray-900 mb-4"></h1>
-            <p data-key="heroSubtitle" class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto"></p>
+        <header class="text-center pt-10">
+            <h1 data-key="heroTitle" class="text-4xl md:text-6xl font-extrabold text-gray-900 mb-6"></h1>
+            <p data-key="heroSubtitle" class="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed"></p>
         </header>
 
-        <!-- Interactive Pricing Section -->
         <section id="pricing" class="scroll-mt-20">
-            <div class="text-center mb-8">
-                <h2 data-key="pricingIntro" class="text-2xl md:text-3xl font-bold mb-4"></h2>
+            <div class="text-center mb-10">
+                <h2 data-key="pricingIntro" class="text-3xl md:text-4xl font-bold mb-6 text-gray-900"></h2>
             </div>
             
-            <!-- Plan Selector Tabs -->
-            <div class="flex flex-col sm:flex-row justify-center gap-2 md:gap-4 mb-8">
-                <button data-plan="free" class="plan-btn flex-1 bg-white shadow-md hover:shadow-lg text-lg font-semibold py-4 px-6 rounded-lg border-2 border-transparent hover:border-cyan-600">
+            <div class="flex flex-col sm:flex-row justify-center gap-3 md:gap-6 mb-10">
+                <button data-plan="free" class="plan-btn flex-1 bg-white shadow-xl hover:shadow-2xl text-xl font-semibold py-5 px-8 rounded-xl border-2 border-transparent hover:border-cyan-600">
                     <span data-key="planFree"></span>
                 </button>
-                <button data-plan="premium" class="plan-btn flex-1 bg-white shadow-md hover:shadow-lg text-lg font-semibold py-4 px-6 rounded-lg border-2 border-transparent hover:border-cyan-600">
+                <button data-plan="premium" class="plan-btn flex-1 bg-white shadow-xl hover:shadow-2xl text-xl font-semibold py-5 px-8 rounded-xl border-2 border-transparent hover:border-cyan-600">
                     <span data-key="planPremium"></span>
                 </button>
-                <button data-plan="vip" class="plan-btn flex-1 bg-white shadow-md hover:shadow-lg text-lg font-semibold py-4 px-6 rounded-lg border-2 border-transparent hover:border-cyan-600">
+                <button data-plan="vip" class="plan-btn flex-1 bg-white shadow-xl hover:shadow-2xl text-xl font-semibold py-5 px-8 rounded-xl border-2 border-transparent hover:border-cyan-600">
                     <span data-key="planVip"></span>
                 </button>
             </div>
 
-            <!-- Plan Details Card -->
-            <div id="plan-details-card" class="bg-white p-6 md:p-8 rounded-2xl shadow-xl max-w-md mx-auto min-h-[220px] transition-all duration-300">
-                <h3 id="plan-name" class="text-3xl font-bold text-cyan-700 mb-6 text-center"></h3>
-                <div class="space-y-4 text-lg">
-                    <p id="plan-projects" class="flex justify-between items-center"></p>
-                    <p id="plan-scripts" class="flex justify-between items-center"></p>
-                    <p id="plan-price" class="flex justify-between items-center text-2xl font-bold pt-4 border-t mt-4"></p>
+            <div id="plan-details-card" class="bg-white p-8 md:p-10 rounded-3xl shadow-3xl max-w-md mx-auto min-h-[240px] transition-all duration-500 transform hover:scale-[1.01] hover:shadow-cyan-400/30 border border-gray-100">
+                <h3 id="plan-name" class="text-3xl font-extrabold text-cyan-700 mb-6 text-center border-b pb-3"></h3>
+                <div class="space-y-4 text-xl">
+                    <p id="plan-projects" class="flex justify-between items-center text-gray-700"></p>
+                    <p id="plan-scripts" class="flex justify-between items-center text-gray-700"></p>
+                    <p id="plan-price" class="flex justify-between items-center text-2xl font-bold pt-4 mt-4 text-cyan-800"></p>
                 </div>
             </div>
         </section>
 
-        <!-- Visualization Section -->
         <section id="comparison">
-            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg">
-                <p data-key="chartIntro" class="text-base text-gray-600 mb-6 text-center max-w-2xl mx-auto"></p>
+            <div class="bg-white p-6 md:p-10 rounded-3xl shadow-xl border border-gray-100">
+                <p data-key="chartIntro" class="text-lg text-gray-600 mb-8 text-center max-w-2xl mx-auto"></p>
                 <div class="chart-container">
                     <canvas id="plansChart"></canvas>
                 </div>
             </div>
         </section>
 
-        <!-- Features Section -->
         <section id="features" class="scroll-mt-20">
-            <h2 data-key="featuresTitle" class="text-2xl md:text-3xl font-bold text-center mb-8"></h2>
-            <!-- 3x2 Grid layout for 6 features -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Feature 1 -->
-                <div class="bg-white p-6 rounded-xl shadow-md text-center">
-                    <span data-key="feature1Title" class="text-xl font-bold text-cyan-800"></span>
-                    <p data-key="feature1Desc" class="text-gray-600 mt-2"></p>
+            <h2 data-key="featuresTitle" class="text-3xl md:text-4xl font-bold text-center mb-10 text-gray-900"></h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="feature-card bg-white p-8 rounded-2xl shadow-lg text-center transition duration-300">
+                    <span data-key="feature1Title" class="text-2xl font-bold text-cyan-800"></span>
+                    <p data-key="feature1Desc" class="text-gray-600 mt-3 text-lg"></p>
                 </div>
-                <!-- Feature 2 -->
-                <div class="bg-white p-6 rounded-xl shadow-md text-center">
-                    <span data-key="feature2Title" class="text-xl font-bold text-cyan-800"></span>
-                    <p data-key="feature2Desc" class="text-gray-600 mt-2"></p>
+                <div class="feature-card bg-white p-8 rounded-2xl shadow-lg text-center transition duration-300">
+                    <span data-key="feature2Title" class="text-2xl font-bold text-cyan-800"></span>
+                    <p data-key="feature2Desc" class="text-gray-600 mt-3 text-lg"></p>
                 </div>
-                <!-- Feature 3 -->
-                <div class="bg-white p-6 rounded-xl shadow-md text-center">
-                    <span data-key="feature3Title" class="text-xl font-bold text-cyan-800"></span>
-                    <p data-key="feature3Desc" class="text-gray-600 mt-2"></p>
+                <div class="feature-card bg-white p-8 rounded-2xl shadow-lg text-center transition duration-300">
+                    <span data-key="feature3Title" class="text-2xl font-bold text-cyan-800"></span>
+                    <p data-key="feature3Desc" class="text-gray-600 mt-3 text-lg"></p>
                 </div>
-                <!-- Feature 4 -->
-                <div class="bg-white p-6 rounded-xl shadow-md text-center">
-                    <span data-key="feature4Title" class="text-xl font-bold text-cyan-800"></span>
-                    <p data-key="feature4Desc" class="text-gray-600 mt-2"></p>
+                <div class="feature-card bg-white p-8 rounded-2xl shadow-lg text-center transition duration-300">
+                    <span data-key="feature4Title" class="text-2xl font-bold text-cyan-800"></span>
+                    <p data-key="feature4Desc" class="text-gray-600 mt-3 text-lg"></p>
                 </div>
-                <!-- Feature 5: API/Bots -->
-                <div class="bg-white p-6 rounded-xl shadow-md text-center">
-                    <span data-key="feature5Title" class="text-xl font-bold text-cyan-800"></span>
-                    <p data-key="feature5Desc" class="text-gray-600 mt-2"></p>
+                <div class="feature-card bg-white p-8 rounded-2xl shadow-lg text-center transition duration-300">
+                    <span data-key="feature5Title" class="text-2xl font-bold text-cyan-800"></span>
+                    <p data-key="feature5Desc" class="text-gray-600 mt-3 text-lg"></p>
                 </div>
-                <!-- Feature 6: Open UI (New) -->
-                <div class="bg-white p-6 rounded-xl shadow-md text-center">
-                    <span data-key="feature6Title" class="text-xl font-bold text-cyan-800"></span>
-                    <p data-key="feature6Desc" class="text-gray-600 mt-2"></p>
+                <div class="feature-card bg-white p-8 rounded-2xl shadow-lg text-center transition duration-300">
+                    <span data-key="feature6Title" class="text-2xl font-bold text-cyan-800"></span>
+                    <p data-key="feature6Desc" class="text-gray-600 mt-3 text-lg"></p>
                 </div>
             </div>
         </section>
 
-        <!-- CTA Section -->
-        <footer class="text-center py-8">
-            <h3 data-key="ctaTitle" class="text-2xl font-bold"></h3>
-            <a href="https://t.me/zox_z8" target="_blank" class="inline-block mt-4 group">
-                <p data-key="ctaButton" class="text-lg"></p>
-                <p class="text-xl font-bold bg-cyan-600 text-white py-3 px-8 rounded-lg inline-flex items-center gap-2 mt-2 shadow-lg group-hover:bg-cyan-700 transition duration-300 transform group-hover:scale-105 cursor-pointer">
-                    <!-- Telegram Icon (Unicode) -->
-                    <span class="text-2xl"></span>
-                    <span data-key="ctaContact"></span>
-                </p>
+        <footer class="text-center py-10">
+            <h3 data-key="ctaTitle" class="text-3xl font-bold mb-6 text-gray-900"></h3>
+            <a href="https://t.me/zox_z8" target="_blank" class="inline-block mt-6 group">
+                <p data-key="ctaButton" class="text-xl"></p>
+                <p data-key="ctaContact" class="text-2xl font-extrabold bg-gradient-to-r from-cyan-600 to-sky-600 text-white py-4 px-10 rounded-full inline-block mt-2 shadow-2xl transition duration-500 transform group-hover:scale-[1.05] group-hover:shadow-cyan-500/50 cursor-pointer tracking-wider"></p>
             </a>
         </footer>
 
@@ -171,7 +156,7 @@
     <script>
         window.addEventListener('DOMContentLoaded', () => {
 
-            // --- 1. DATA STORES ---
+            // --- 1. DATA STORES (مخازن البيانات) ---
 
             const translations = {
                 ar: {
@@ -184,7 +169,8 @@
                     projects: "المشاريع",
                     scripts: "السكربتات",
                     price: "السعر",
-                    priceUnit: "دولار فقط!",
+                    // FIX: Using {{price}} placeholder for accurate price display in AR
+                    priceUnit: "{{price}} دولار فقط!", 
                     chartIntro: "مقارنة بصرية لعدد المشاريع المسموح به في كل باقة. توضح الباقات الأعلى القيمة الكبيرة التي تحصل عليها مقابل زيادة طفيفة في السعر.",
                     featuresTitle: "لماذا تختار SERVER XC3؟",
                     feature1Title: "أداء فائق ⚡",
@@ -213,7 +199,7 @@
                     projects: "Projects",
                     scripts: "Scripts",
                     price: "Price",
-                    priceUnit: "Only $!",
+                    priceUnit: "{{price}} Only $!",
                     chartIntro: "A visual comparison of the number of projects allowed in each package. The higher tiers show the significant value you receive for a minimal price increase.",
                     featuresTitle: "Why choose SERVER XC3?",
                     feature1Title: "Superior Performance ⚡",
@@ -240,13 +226,13 @@
                 vip: { nameKey: "planVip", projects: 50, scripts: 5, price: 10 }
             };
 
-            // --- 2. STATE VARIABLES ---
+            // --- 2. STATE VARIABLES (متغيرات الحالة) ---
 
             let currentLang = 'ar';
             let currentPlan = 'premium';
             let plansChart = null;
 
-            // --- 3. DOM REFERENCES ---
+            // --- 3. DOM REFERENCES (إشارات DOM) ---
 
             const langButtons = document.querySelectorAll('.lang-btn');
             const planButtons = document.querySelectorAll('.plan-btn');
@@ -258,7 +244,7 @@
             const planPriceEl = document.getElementById('plan-price');
             const chartCanvas = document.getElementById('plansChart');
 
-            // --- 4. CORE FUNCTIONS ---
+            // --- 4. CORE FUNCTIONS (الوظائف الأساسية) ---
 
             function setLanguage(lang) {
                 if (!translations[lang]) return;
@@ -308,7 +294,9 @@
                     <span class="font-bold text-gray-900">${planData.scripts}</span>
                 `;
                 
-                const priceText = trans.priceUnit.replace('$', planData.price);
+                // FIX: Use {{price}} placeholder to ensure the actual numerical price is shown
+                const priceText = trans.priceUnit.replace('{{price}}', planData.price); 
+                
                 planPriceEl.innerHTML = `
                     <span>${trans.price}:</span>
                     <span class="text-cyan-600">${priceText}</span>
@@ -402,7 +390,7 @@
                 plansChart.update();
             }
 
-            // --- 5. EVENT LISTENERS ---
+            // --- 5. EVENT LISTENERS (مستمعي الأحداث) ---
 
             langButtons.forEach(btn => {
                 btn.addEventListener('click', () => {
@@ -416,7 +404,7 @@
                 });
             });
 
-            // --- 6. INITIALIZATION ---
+            // --- 6. INITIALIZATION (التهيئة) ---
 
             initChart();
             setLanguage(currentLang);
